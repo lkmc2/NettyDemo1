@@ -22,20 +22,24 @@ public class CustomHandler extends SimpleChannelInboundHandler<HttpObject> {
         // 获取 Channel 通道
         Channel channel = ctx.channel();
 
-        // 显示客户端的远程地址
-        System.out.println(channel.remoteAddress());
+        // 只接受 http 请求
+        if (msg instanceof HttpRequest) {
+            // 显示客户端的远程地址
+            System.out.println(channel.remoteAddress());
 
-        // 定义发送的数据消息
-        ByteBuf content = Unpooled.copiedBuffer("Hello Netty~", CharsetUtil.UTF_8);
+            // 定义发送的数据消息
+            ByteBuf content = Unpooled.copiedBuffer("Hello Netty~", CharsetUtil.UTF_8);
 
-        // 构建一个 Http Response 响应
-        DefaultFullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, content);
-        // 设置响应的 Header
-        response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
-        response.headers().set(HttpHeaderNames.CONTENT_LENGTH, content.readableBytes());
+            // 构建一个 Http Response 响应
+            DefaultFullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, content);
+            // 设置响应的 Header
+            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
+            response.headers().set(HttpHeaderNames.CONTENT_LENGTH, content.readableBytes());
 
-        // 把响应刷到客户端
-        ctx.writeAndFlush(response);
+            // 把响应刷到客户端
+            ctx.writeAndFlush(response);
+        }
+
     }
 
 }
