@@ -1,4 +1,4 @@
-package com.lin;
+package com.lin.ch01;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;

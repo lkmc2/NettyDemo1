@@ -1,4 +1,4 @@
-package com.lin;
+package com.lin.ch01;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
