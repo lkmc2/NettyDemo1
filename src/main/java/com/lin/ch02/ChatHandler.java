@@ -33,7 +33,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
         for (Channel client : clients) {
             // 刷新消息到客户端（因为当前类的泛型是 TextWebSocketFrame ，所以返回的对象也需要是这个类型）
             client.writeAndFlush(new TextWebSocketFrame(
-                            String.format("服务器在 【%s】 接受到消息，消息为：【%s】",
+                            String.format("服务器在 【%s】 接收到消息，消息为：【%s】",
                             LocalDateTime.now(), content)));
         }
 

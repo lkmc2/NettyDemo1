@@ -9,6 +9,8 @@
     <div>发送消息</div>
     <input type="text" id="msgContext">
     <input type="button" value="点我发送" onclick="CHAT.chat()">
+    <br/>
+    <br/>
 
     <div>接收消息：</div>
     <div id="receiveMsg" style="background-color: gainsboro;"></div>
@@ -63,6 +65,13 @@
 
         // 初始化 WebSocket 连接
         CHAT.init();
+
+        // 设置回车键事件
+        document.onkeydown = function (e) {
+            if (e.keyCode === 13) {
+                CHAT.chat();
+            }
+        };
 
     </script>
 </body>
