@@ -31,12 +31,16 @@ public class WebSocketSever {
             // 启动 server ，并设置 9999 为启动的端口号，同时启动方式为同步
             ChannelFuture future = server.bind(9999).sync();
 
+            System.out.println("当前 Netty 服务器启动在：http://localhost:9999");
+
             // 监听关闭的 channel ，设置为同步方式
             future.channel().closeFuture().sync();
         } finally {
             // 优雅的关闭主线程和从线程组
             mainGroup.shutdownGracefully();
             subGroup.shutdownGracefully();
+
+            System.out.println("Netty 服务器已停止");
         }
 
     }
